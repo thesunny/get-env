@@ -1,6 +1,6 @@
 {
-  "name": "get-env",
-  "version": "1.0.0",
+  "name": "@thesunny/get-env",
+  "version": "1.0.1",
   "main": ".npm/src/index.js",
   "license": "MIT",
   "types": ".npm/src/index.d.ts",

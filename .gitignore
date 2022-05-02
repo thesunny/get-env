@@ -12,3 +12,17 @@
 node_modules/
 .DS_Store
 yarn-error.log
+# Ignore dotenv environment variables
+
+# Ignore build/dist directories
+
+# Ignore Next.js directory
+
+# ignore vercel link directory
+
+
+# logging we can ignore
+eslint.log
+
+# ignore the increment typescript build info
+tsconfig.tsbuildinfo

@@ -2,5 +2,6 @@
 .dist/
 .next/
 .npm/
-node_modules/
 .vercel/
+cypress/
+node_modules/

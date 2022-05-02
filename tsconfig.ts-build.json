@@ -19,7 +19,7 @@
      */
     "declaration": true,
     "noEmit": false,
-    "outDir": ".npm",
+    "outDir": ".dist",
     "jsx": "react-jsx"
   },
   /**

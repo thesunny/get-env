@@ -17,6 +17,7 @@ if (!fs.existsSync("tsconfig.ts-jest.json")) {
 }
 
 module.exports = {
+  setupFiles: ["./jest.setup.js"],
   globals: {
     "ts-jest": {
       /**
@@ -40,4 +41,13 @@ module.exports = {
    */
   preset: "ts-jest",
   testEnvironment: "node",
+  /**
+   * This needs to match the `paths` entry in `tsconfig.base.json` or
+   * `tsconfig.custom.json`.
+   *
+   * TODO: Use `jest-module-name-mapper` to create mappings from tsconfig
+   */
+  moduleNameMapper: {
+    "^~/(.*)$": "<rootDir>/$1",
+  },
 }

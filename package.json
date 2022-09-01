@@ -1,29 +1,35 @@
 {
   "name": "@thesunny/get-env",
-  "version": "1.0.2",
-  "main": ".dist/src/index.js",
+  "version": "1.0.3",
   "license": "MIT",
-  "types": ".dist/src/index.d.ts",
   "files": [
     ".npm/**/*",
     ".dist/**/*"
   ],
+  "main": ".dist/cjs/src/index.js",
+  "module": ".dist/mjs/src/index.js",
+  "types": ".dist/cjs/src/index.d.ts",
   "devDependencies": {
     "@types/jest": "^27",
-    "@types/node": "^17.0.15",
+    "@types/node": "^18.7.14",
     "@typescript-eslint/eslint-plugin": "^5.15.0",
     "@typescript-eslint/parser": "^5.15.0",
+    "concurrently": "^7.2",
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.1.0",
     "eslint-plugin-no-secrets": "^0.8.9",
     "eslint-plugin-react": "^7.27.1",
+    "eslint-plugin-simple-import-sort": "^7.0",
     "jest": "^27",
     "prettier": "^2.5.1",
     "ts-jest": "^27",
-    "ts-node": "^10.4.0",
+    "ts-node": "^10.9.1",
     "tsc": "^2.0.4",
-    "tsconfig-paths": "^3.12.0",
-    "typescript": "^4.5.5"
+    "tsconfig-paths": "^4.1.0",
+    "typescript": "^4.8.2"
+  },
+  "dependencies": {
+    "@thesunny/assert-type": "^0.1.7"
   },
   "scripts": {
     "-- preset": "# Run preset from @thesunny/presets",
@@ -36,19 +42,24 @@
     "--- npm": "# npm package scripts",
     "build:npm:once": "rm -rf ./.dist/ && yarn test:once && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
     "build:npm:watch": "rm -rf ./.dist/ && tsc -p tsconfig.ts-build.json --watch",
-    "publish:npm": "yarn publish:npm:patch",
-    "publish:npm:patch": "yarn build:npm:once && yarn version --patch && yarn publish --non-interactive || echo '\"npm publish --access=public\" to publish to npm'",
+    "publish:npm": "yarn build:once && yarn publish || yarn publish:first",
+    "publish:npm:patch": "yarn build:once && yarn version --patch && yarn publish --non-interactive || yarn publish:first",
     "-- fix": "# fix syntax",
     "fix:prettier": "yarn lint:prettier --write",
     "fix:eslint": "yarn lint:eslint --fix",
     "-- lint": "# lint syntax",
     "lint:prettier": "prettier --check \"**/*.{css,md,js,jsx,json,ts,tsx}\"",
-    "lint": "yarn lint:prettier && yarn lint:eslint && yarn lint:tsc",
+    "lint": "concurrently 'yarn lint:prettier' 'yarn lint:eslint' 'yarn lint:tsc'",
     "lint:eslint": "eslint .",
     "lint:tsc": "tsc --build ./ --force",
+    "--- build npm": "# build npm",
+    "build:once": "yarn build:clear && yarn test:once && concurrently 'yarn build:cjs' 'yarn build:mjs' && echo 'Finished Building'",
+    "build:watch": "build:clear && tsc -p tsconfig.ts-build.json --watch",
+    "build:clear": "rm -rf ./.dist/",
+    "build:cjs": "tsc -p tsconfig.build-cjs.json",
+    "build:mjs": "tsc -p tsconfig.build-mjs.json",
+    "-- publish npm": "# publish npm package",
+    "publish:first": "echo 'IMPORTANT INSTRUCTIONS: This is first publish so please use:\n\n\"npm publish --access=public\"'",
     "-- end": "# end"
-  },
-  "dependencies": {
-    "@thesunny/assert-type": "^0.1.7"
   }
 }

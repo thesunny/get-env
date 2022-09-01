@@ -1,6 +1,6 @@
 {
   "name": "@thesunny/get-env",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "license": "MIT",
   "files": [
     ".npm/**/*",

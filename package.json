@@ -1,6 +1,6 @@
 {
   "name": "@thesunny/get-env",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "license": "MIT",
   "homepage": "https://github.com/thesunny/get-env",
   "repository": {
@@ -46,8 +46,6 @@
     "--- npm": "# npm package scripts",
     "build:npm:once": "rm -rf ./.dist/ && yarn test:once && tsc -p tsconfig.ts-build.json && echo 'Finished Building'",
     "build:npm:watch": "rm -rf ./.dist/ && tsc -p tsconfig.ts-build.json --watch",
-    "publish:npm": "yarn build:once && yarn publish || yarn publish:first",
-    "publish:npm:patch": "yarn build:once && yarn version --patch && yarn publish --non-interactive || yarn publish:first",
     "-- fix": "# fix syntax",
     "fix:prettier": "yarn lint:prettier --write",
     "fix:eslint": "yarn lint:eslint --fix",
@@ -64,6 +62,8 @@
     "build:mjs": "tsc -p tsconfig.build-mjs.json",
     "-- publish npm": "# publish npm package",
     "publish:first": "echo 'IMPORTANT INSTRUCTIONS: This is first publish so please use:\n\n\"npm publish --access=public\"'",
+    "publish:npm": "yarn build:once && yarn publish || yarn publish:first",
+    "publish:npm:patch": "yarn build:once && yarn version --patch && yarn publish --non-interactive || yarn publish:first",
     "-- end": "# end"
   }
 }

@@ -2,6 +2,11 @@
   "name": "@thesunny/get-env",
   "version": "1.0.4",
   "license": "MIT",
+  "homepage": "https://github.com/thesunny/get-env",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thesunny/get-env"
+  },
   "files": [
     ".npm/**/*",
     ".dist/**/*"

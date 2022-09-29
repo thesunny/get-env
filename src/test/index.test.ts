@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 import { getDynamicEnv, getNextPublicEnv, getStaticEnv } from ".."
 import { AssertType } from "@thesunny/assert-type"
 
